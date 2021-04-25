@@ -1,0 +1,86 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.util.Arrays;
+import java.util.*;
+
+public class ReadingFiles {
+    public static void main(String[] args) {
+        int[] data = readFiles("input3.txt");
+        int n;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Number of the employees:");
+
+        n = sc.nextInt();
+
+        System.out.print("Here the goodies that are selected for distribution are:");
+
+        MinMaxInArray mm = new MinMaxInArray();
+        mm.getMax(data);
+        mm.getMin(data);
+        int Difference = mm.getMax(data) - mm.getMin(data);
+        System.out.print("And the difference between the chosen goodie with highest price and the lowest price is "
+                + Difference);
+
+    }
+
+    public static int[] readFiles(String file) {
+        try {
+            File f = new File(file);
+            Scanner s = new Scanner(f);
+            int ctr = 0;
+            while (s.hasNextInt()) {
+                ctr++;
+                s.nextInt();
+            }
+            int[] arr = new int[ctr];
+            Scanner s1 = new Scanner(f);
+            for (int i = 0; i < arr.length; i++)
+                arr[i] = s1.nextInt();
+            return arr;
+        } catch (exception e) {
+            return null;
+        }
+    }
+
+    public class MinMax {
+        int getMax(int[] inputArray) {
+            int maxValue = inputArray[0];
+            for (int i = 1; i < inputArray.length; i++) {
+                if (inputArray[i] > maxValue) {
+                    maxValue = inputArray[i];
+                }
+            }
+            return maxValue;
+        }
+
+    int getMin(int[]inputArray)
+	{
+		int minValue=inputArray[0];
+        for(int i=1;i<inputArray.length;i++)
+		{
+			if(inputArray[i]<minValue)
+			{
+				minValue=inputArray[i];
+			}
+		}
+		return minValue;
+	}
+
+        try
+
+        {
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            String lineFromInput = in.readLine();
+            PrintWriter out = new PrintWriter(new FileWriter("output3.txt"));
+            out.println(lineFromInput);
+            out.close();
+        }catch(
+        IOException e1)
+        {
+            System.out.println("Error during reading/writing");
+        }
+
+    }
+}
